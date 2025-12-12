@@ -74,7 +74,7 @@ const Index = () => {
             <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
               <Music className="w-5 h-5 text-primary-foreground" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">VynilBox</h1>
+            <h1 className="text-xl font-bold text-foreground">Automações</h1>
           </div>
         </div>
       </header>
