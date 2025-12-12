@@ -106,7 +106,7 @@ const Index = () => {
             <WorkflowCard
               icon={<Disc3 className="w-6 h-6" />}
               title="Discogs Script"
-              description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
+              description="Busca informações detalhadas de discos, artistas do Discogs da sua coleção."
               buttonText="Executar Script"
               onExecute={executeDiscogs}
               delay={200}
