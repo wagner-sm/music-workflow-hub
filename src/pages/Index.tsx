@@ -7,7 +7,7 @@ const Index = () => {
 
   const executeSetlistFM = async () => {
     try {
-      const response = await fetch("https://n8n.vynilbox.com.br/mcp/SBukU2cNpfBGYgWm/DXivAQdpb2by8gFJ/webhook", {
+      const response = await fetch("https://n8n-setlisfm.wagnermetalcfc.workers.dev", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Index = () => {
 
   const executeDiscogs = async () => {
     try {
-      const response = await fetch("https://n8n.vynilbox.com.br/mcp/SBukU2cNpfBGYgWm/RNCTWl8ASkkhr0Ug/webhook", {
+      const response = await fetch("https://n8n-discogs.wagnermetalcfc.workers.dev", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
