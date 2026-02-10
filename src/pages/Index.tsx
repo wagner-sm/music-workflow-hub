@@ -132,7 +132,7 @@ const Index = () => {
     
     try {
       // ⚠️ SUBSTITUA PELA URL DO SEU WORKFLOW PIPEDREAM DISCOGS
-      const PIPEDREAM_DISCOGS_URL = "https://COLE_SUA_URL_AQUI.m.pipedream.net";
+      const PIPEDREAM_DISCOGS_URL = "https://eo38jrf5vyolc3q.m.pipedream.net";
       
       console.log('🚀 Iniciando requisição para:', PIPEDREAM_DISCOGS_URL);
       
