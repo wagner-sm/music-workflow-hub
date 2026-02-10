@@ -36,34 +36,50 @@ const Index = () => {
   };
 
   const executeDiscogs = async () => {
-    try {
-      const response = await fetch("https://eo38jrf5vyolc3q.m.pipedream.net", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          source: "lovable-app",
-          timestamp: new Date().toISOString(),
-        }),
-      });
+	  try {
+		const response = await fetch("https://eo38jrf5vyolc3q.m.pipedream.net", {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify({
+			source: "lovable-app",
+			timestamp: new Date().toISOString(),
+		  }),
+		});
 
-      if (response.ok) {
-        toast({
-          title: "Script Discogs executado!",
-          description: "O workflow foi iniciado com sucesso.",
-        });
-      } else {
-        throw new Error("Falha na execução");
-      }
-    } catch (error) {
-      toast({
-        title: "Erro ao executar",
-        description: "Não foi possível executar o script. Tente novamente.",
-        variant: "destructive",
-      });
-    }
-  };
+		if (!response.ok) {
+		  throw new Error("Falha na execução");
+		}
+
+		// 🔥 transformar resposta em arquivo
+		const blob = await response.blob();
+
+		// nome do arquivo (opcional pegar do header)
+		const filename = "discogs_colecao.xlsx";
+
+		const url = window.URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = filename;
+		document.body.appendChild(a);
+		a.click();
+
+		a.remove();
+		window.URL.revokeObjectURL(url);
+
+		toast({
+		  title: "Download iniciado!",
+		  description: "O arquivo do Discogs está sendo baixado.",
+		});
+	  } catch (error) {
+		toast({
+		  title: "Erro ao executar",
+		  description: "Não foi possível gerar o arquivo do Discogs.",
+		  variant: "destructive",
+		});
+	  }
+	};
 
   return (
     <div className="min-h-screen bg-background">
