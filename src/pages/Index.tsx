@@ -50,6 +50,8 @@ const Index = () => {
       // ⚠️ SUBSTITUA PELA URL DO SEU WORKFLOW PIPEDREAM SETLIST.FM
       const PIPEDREAM_SETLISTFM_URL = "https://eo38jrf5vyolc3q.m.pipedream.net";
       
+      console.log('🚀 Iniciando requisição para:', PIPEDREAM_SETLISTFM_URL);
+      
       const response = await fetch(PIPEDREAM_SETLISTFM_URL, {
         method: "POST",
         headers: {
@@ -61,7 +63,19 @@ const Index = () => {
         }),
       });
 
+      console.log('📥 Status da resposta:', response.status);
+      console.log('📥 Content-Type:', response.headers.get('content-type'));
+
+      // Verificar se a resposta é JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('❌ Resposta não é JSON:', text.substring(0, 200));
+        throw new Error(`Resposta inválida do servidor. Status: ${response.status}. Verifique se o workflow está configurado corretamente no Pipedream.`);
+      }
+
       const result = await response.json();
+      console.log('✅ Resultado:', result);
 
       if (response.ok && result.success) {
         // Mostrar notificação de sucesso
@@ -91,10 +105,21 @@ const Index = () => {
         throw new Error(result.error || result.message || "Falha na execução");
       }
     } catch (error: any) {
-      console.error("Erro Setlist.fm:", error);
+      console.error("❌ Erro completo:", error);
+      
+      let errorMessage = "Erro desconhecido";
+      
+      if (error.message.includes('JSON.parse')) {
+        errorMessage = "O workflow do Pipedream retornou uma resposta inválida. Verifique se o código Python está configurado corretamente e se você fez Deploy.";
+      } else if (error.message.includes('Failed to fetch')) {
+        errorMessage = "Não foi possível conectar ao Pipedream. Verifique a URL do workflow e sua conexão com a internet.";
+      } else {
+        errorMessage = error.message;
+      }
+      
       toast({
         title: "❌ Erro ao executar Setlist.fm",
-        description: error.message || "Não foi possível executar o script. Verifique a configuração.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -107,7 +132,9 @@ const Index = () => {
     
     try {
       // ⚠️ SUBSTITUA PELA URL DO SEU WORKFLOW PIPEDREAM DISCOGS
-      const PIPEDREAM_DISCOGS_URL = "https://eo38jrf5vyolc3q.m.pipedream.net";
+      const PIPEDREAM_DISCOGS_URL = "https://COLE_SUA_URL_AQUI.m.pipedream.net";
+      
+      console.log('🚀 Iniciando requisição para:', PIPEDREAM_DISCOGS_URL);
       
       const response = await fetch(PIPEDREAM_DISCOGS_URL, {
         method: "POST",
@@ -120,7 +147,19 @@ const Index = () => {
         }),
       });
 
+      console.log('📥 Status da resposta:', response.status);
+      console.log('📥 Content-Type:', response.headers.get('content-type'));
+
+      // Verificar se a resposta é JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('❌ Resposta não é JSON:', text.substring(0, 200));
+        throw new Error(`Resposta inválida do servidor. Status: ${response.status}. Verifique se o workflow está configurado corretamente no Pipedream.`);
+      }
+
       const result = await response.json();
+      console.log('✅ Resultado:', result);
 
       if (response.ok && result.success) {
         // Mostrar notificação de sucesso
@@ -150,10 +189,21 @@ const Index = () => {
         throw new Error(result.error || result.message || "Falha na execução");
       }
     } catch (error: any) {
-      console.error("Erro Discogs:", error);
+      console.error("❌ Erro completo:", error);
+      
+      let errorMessage = "Erro desconhecido";
+      
+      if (error.message.includes('JSON.parse')) {
+        errorMessage = "O workflow do Pipedream retornou uma resposta inválida. Verifique se o código Python está configurado corretamente e se você fez Deploy.";
+      } else if (error.message.includes('Failed to fetch')) {
+        errorMessage = "Não foi possível conectar ao Pipedream. Verifique a URL do workflow e sua conexão com a internet.";
+      } else {
+        errorMessage = error.message;
+      }
+      
       toast({
         title: "❌ Erro ao exportar Discogs",
-        description: error.message || "Não foi possível executar o script. Verifique a configuração.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -253,6 +303,7 @@ const Index = () => {
               <li>• Arquivos Excel são gerados automaticamente com estatísticas</li>
               <li>• <strong>Download automático</strong> inicia assim que o processamento termina</li>
               <li>• Processo leva entre 10-30 segundos dependendo da quantidade de dados</li>
+              <li>• <strong>Atenção:</strong> Verifique o console do navegador (F12) em caso de erro</li>
             </ul>
           </div>
 
