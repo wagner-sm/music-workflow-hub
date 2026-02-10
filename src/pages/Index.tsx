@@ -151,12 +151,14 @@ const Index = () => {
       console.log('📥 Content-Type:', response.headers.get('content-type'));
 
       // Verificar se a resposta é JSON
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        const text = await response.text();
-        console.error('❌ Resposta não é JSON:', text.substring(0, 200));
-        throw new Error(`Resposta inválida do servidor. Status: ${response.status}. Verifique se o workflow está configurado corretamente no Pipedream.`);
-      }
+      const text = await response.text();
+	  let result;
+	  try {
+	    result = JSON.parse(text);
+	  } catch (e) {
+	    console.error("Resposta não é JSON:", text);
+	    throw new Error("Resposta inválida do servidor");
+	  }
 
       const result = await response.json();
       console.log('✅ Resultado:', result);
