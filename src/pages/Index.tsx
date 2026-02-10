@@ -7,7 +7,7 @@ const Index = () => {
 
   const executeSetlistFM = async () => {
     try {
-      const response = await fetch("https://eowxfuassnigszs.m.pipedream.net", {
+      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Index = () => {
 
   const executeDiscogs = async () => {
     try {
-      const response = await fetch("https://eo38jrf5vyolc3q.m.pipedream.net", {
+      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/discogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
