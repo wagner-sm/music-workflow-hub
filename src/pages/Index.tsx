@@ -37,32 +37,25 @@ const Index = () => {
 
   const executeDiscogs = async () => {
     try {
-      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
-	  method: "POST",
-	  headers: {
-		"Content-Type": "application/json",
-	  },
-	  body: JSON.stringify({
-		source: "lovable-app",
-		timestamp: new Date().toISOString(),
-	  }),
-	});
+      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/discogs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source: "lovable-app",
+          timestamp: new Date().toISOString(),
+        }),
+      });
 
-	if (!response.ok) {
-	  throw new Error("Falha na execução");
-	}
-
-	const data = await response.json();
-
-	if (data.success) {
-	  toast({
-		title: "Script Setlist.fm executado!",
-		description: data.message,
-	  });
-	} else {
-	  throw new Error(data.message || "Erro no workflow");
-	}
-
+      if (response.ok) {
+        toast({
+          title: "Script Discogs executado!",
+          description: "O workflow foi iniciado com sucesso.",
+        });
+      } else {
+        throw new Error("Falha na execução");
+      }
     } catch (error) {
       toast({
         title: "Erro ao executar",
