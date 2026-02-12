@@ -98,7 +98,7 @@ const Index = () => {
 			  <WorkflowCard
                icon={<Disc3 className="w-6 h-6" />}
                title="Discogs Script"
-               description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
+               description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs da sua coleção."
                buttonText="Executar Script"
                onExecute={executeDiscogs}
                delay={200}
@@ -106,7 +106,7 @@ const Index = () => {
             <WorkflowCard
               icon={<Music className="w-6 h-6" />}
               title="Setlist.fm Script"
-              description="Extrai dados de setlists e informações de shows diretamente do Setlist.fm para sua coleção."
+              description="Extrai dados de setlists e informações de shows diretamente do Setlist.fm que você compareceu."
               buttonText="Executar Script"
               onExecute={executeSetlistFM}
               delay={100}
