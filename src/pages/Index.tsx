@@ -4,37 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const { toast } = useToast();
-
-  const executeSetlistFM = async () => {
-    try {
-      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          source: "lovable-app",
-          timestamp: new Date().toISOString(),
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Script Setlist.fm executado!",
-          description: "O workflow foi iniciado com sucesso.",
-        });
-      } else {
-        throw new Error("Falha na execução");
-      }
-    } catch (error) {
-      toast({
-        title: "Erro ao executar",
-        description: "Não foi possível executar o script. Tente novamente.",
-        variant: "destructive",
-      });
-    }
-  };
-
+  
   const executeDiscogs = async () => {
     try {
       const response = await fetch("https://workers.wagnermetalcfc.workers.dev/discogs", {
@@ -64,7 +34,37 @@ const Index = () => {
       });
     }
   };
+  
+  const executeSetlistFM = async () => {
+    try {
+      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source: "lovable-app",
+          timestamp: new Date().toISOString(),
+        }),
+      });
 
+      if (response.ok) {
+        toast({
+          title: "Script Setlist.fm executado!",
+          description: "O workflow foi iniciado com sucesso.",
+        });
+      } else {
+        throw new Error("Falha na execução");
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao executar",
+        description: "Não foi possível executar o script. Tente novamente.",
+        variant: "destructive",
+      });
+    }
+  };
+  
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
