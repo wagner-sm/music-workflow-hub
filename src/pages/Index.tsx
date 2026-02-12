@@ -35,6 +35,7 @@ const Index = () => {
     }
   };
   
+
   const executeSetlistFM = async () => {
     try {
       const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
@@ -94,15 +95,14 @@ const Index = () => {
 
           {/* Workflow Cards */}
           <div className="grid gap-6 md:grid-cols-2">
-			WorkflowCard
-              icon={<Disc3 className="w-6 h-6" />}
-              title="Discogs Script"
-              description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
-              buttonText="Executar Script"
-              onExecute={executeDiscogs}
-              delay={200}
-            />		  
-		  
+			  <WorkflowCard
+               icon={<Disc3 className="w-6 h-6" />}
+               title="Discogs Script"
+               description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
+               buttonText="Executar Script"
+               onExecute={executeDiscogs}
+               delay={200}
+            />
             <WorkflowCard
               icon={<Music className="w-6 h-6" />}
               title="Setlist.fm Script"
@@ -110,8 +110,7 @@ const Index = () => {
               buttonText="Executar Script"
               onExecute={executeSetlistFM}
               delay={100}
-            />
-            <
+            />       
           </div>
         </div>
       </main>
