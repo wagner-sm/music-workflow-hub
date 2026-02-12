@@ -88,12 +88,21 @@ const Index = () => {
               Automações de Música
             </h2>
             <p className="text-muted-foreground text-lg">
-              Execute scripts para extrair dados do Setlist.fm e Discogs automaticamente.
+              Execute scripts para extrair dados do Discogs e Setlist.fm automaticamente.
             </p>
           </div>
 
           {/* Workflow Cards */}
           <div className="grid gap-6 md:grid-cols-2">
+			WorkflowCard
+              icon={<Disc3 className="w-6 h-6" />}
+              title="Discogs Script"
+              description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
+              buttonText="Executar Script"
+              onExecute={executeDiscogs}
+              delay={200}
+            />		  
+		  
             <WorkflowCard
               icon={<Music className="w-6 h-6" />}
               title="Setlist.fm Script"
@@ -102,15 +111,7 @@ const Index = () => {
               onExecute={executeSetlistFM}
               delay={100}
             />
-
-            <WorkflowCard
-              icon={<Disc3 className="w-6 h-6" />}
-              title="Discogs Script"
-              description="Busca informações detalhadas de discos, artistas e lançamentos no banco de dados do Discogs."
-              buttonText="Executar Script"
-              onExecute={executeDiscogs}
-              delay={200}
-            />
+            <
           </div>
         </div>
       </main>
