@@ -7,8 +7,6 @@ const Index = () => {
 
   const executeSetlistFM = async () => {
     try {
-      console.log("🚀 Iniciando chamada para Setlist.fm...");
-      
       const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
         method: "POST",
         headers: {
@@ -20,38 +18,15 @@ const Index = () => {
         }),
       });
 
-      console.log("📡 Status da resposta:", response.status);
-      console.log("📡 Headers:", Object.fromEntries(response.headers.entries()));
-      
-      // Pegar o texto bruto primeiro
-      const responseText = await response.text();
-      console.log("📄 Resposta bruta:", responseText);
-
       if (response.ok) {
-        try {
-          // Tentar parsear o JSON
-          const data = JSON.parse(responseText);
-          console.log("✅ JSON parseado:", data);
-          
-          toast({
-            title: data.message || "Script Setlist.fm executado!",
-            description: data.success 
-              ? "O workflow foi concluído com sucesso." 
-              : "O workflow foi iniciado.",
-          });
-        } catch (jsonError) {
-          console.error("❌ Erro ao parsear JSON:", jsonError);
-          console.log("Mostrando toast genérico...");
-          toast({
-            title: "Script Setlist.fm executado!",
-            description: "O workflow foi concluído.",
-          });
-        }
+        toast({
+          title: "Script Setlist.fm executado!",
+          description: "O workflow foi iniciado com sucesso.",
+        });
       } else {
-        throw new Error(`Falha na execução: ${response.status}`);
+        throw new Error("Falha na execução");
       }
     } catch (error) {
-      console.error("❌ Erro ao executar:", error);
       toast({
         title: "Erro ao executar",
         description: "Não foi possível executar o script. Tente novamente.",
@@ -62,8 +37,6 @@ const Index = () => {
 
   const executeDiscogs = async () => {
     try {
-      console.log("🚀 Iniciando chamada para Discogs...");
-      
       const response = await fetch("https://workers.wagnermetalcfc.workers.dev/discogs", {
         method: "POST",
         headers: {
@@ -75,38 +48,15 @@ const Index = () => {
         }),
       });
 
-      console.log("📡 Status da resposta:", response.status);
-      console.log("📡 Headers:", Object.fromEntries(response.headers.entries()));
-      
-      // Pegar o texto bruto primeiro
-      const responseText = await response.text();
-      console.log("📄 Resposta bruta:", responseText);
-
       if (response.ok) {
-        try {
-          // Tentar parsear o JSON
-          const data = JSON.parse(responseText);
-          console.log("✅ JSON parseado:", data);
-          
-          toast({
-            title: data.message || "Script Discogs executado!",
-            description: data.success 
-              ? "O workflow foi concluído com sucesso." 
-              : "O workflow foi iniciado.",
-          });
-        } catch (jsonError) {
-          console.error("❌ Erro ao parsear JSON:", jsonError);
-          console.log("Mostrando toast genérico...");
-          toast({
-            title: "Script Discogs executado!",
-            description: "O workflow foi concluído.",
-          });
-        }
+        toast({
+          title: "Script Discogs executado!",
+          description: "O workflow foi iniciado com sucesso.",
+        });
       } else {
-        throw new Error(`Falha na execução: ${response.status}`);
+        throw new Error("Falha na execução");
       }
     } catch (error) {
-      console.error("❌ Erro ao executar:", error);
       toast({
         title: "Erro ao executar",
         description: "Não foi possível executar o script. Tente novamente.",
