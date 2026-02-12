@@ -19,9 +19,10 @@ const Index = () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
         toast({
-          title: "Script Setlist.fm executado!",
-          description: "O workflow foi iniciado com sucesso.",
+          title: data.message || "Script Setlist.fm executado!",
+          description: "O workflow foi concluído com sucesso.",
         });
       } else {
         throw new Error("Falha na execução");
@@ -49,9 +50,10 @@ const Index = () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
         toast({
-          title: "Script Discogs executado!",
-          description: "O workflow foi iniciado com sucesso.",
+          title: data.message || "Script Discogs executado!",
+          description: "O workflow foi concluído com sucesso.",
         });
       } else {
         throw new Error("Falha na execução");
