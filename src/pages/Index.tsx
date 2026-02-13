@@ -7,7 +7,7 @@ const Index = () => {
   
   const executeDiscogs = async () => {
     try {
-      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/discogs", {
+      const response = await fetch("https://n8n-n8n.cdkzai.easypanel.host/webhook/discogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const Index = () => {
 
   const executeSetlistFM = async () => {
     try {
-      const response = await fetch("https://workers.wagnermetalcfc.workers.dev/setlistfm", {
+      const response = await fetch("https://n8n-n8n.cdkzai.easypanel.host/webhook/setlistfm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
